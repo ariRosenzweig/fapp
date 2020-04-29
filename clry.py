@@ -32,4 +32,4 @@ def fetch_main(url):
 
 @celery.task()
 def get_json(i):
-    return process_json(i)
+    return {get_json.request.id: process_json(i)}
