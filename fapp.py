@@ -35,6 +35,12 @@ def home(first_name, last_name):
     resp = Response(js, status=200, mimetype='application/json')
     return resp  
 
+@app.route('/api/graphs/<key>')
+def make_graph(key):
+    data = get_key(key)
+    resp = Response(data, status=200, mimetype='application/json')
+    return resp
+
 @app.route('/')
 def default():
     return current_app.send_static_file('index.html')

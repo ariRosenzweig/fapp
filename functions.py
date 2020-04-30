@@ -1,7 +1,8 @@
 import eventlet
 requests = eventlet.import_patched('requests')
-import bs4, json, spacy, lxml
+import bs4, json, lxml
 from bs4 import BeautifulSoup
+from redis import Redis 
 import en_core_web_sm
 nlp = en_core_web_sm.load()
 
@@ -47,3 +48,9 @@ def process_json(i):
         #condols =[{'Name':i['node']['name'], 'msg': i['node']['message'], 'city':i['node']['city'], 'state': i['node']['state'], 'date':i['node']['date']} for i in tu]   
         record={'Entries':uv, 'Name': names, 'Location':loc, 'Source':href, 'Condolences':[], 'Entities': e}
         return record
+
+def get_key(i):
+    r=Redis()
+    key= "celery-task-meta-" + str(i)
+    val=json.loads(r.get(key))
+    return json.dumps(val, indent=1)
