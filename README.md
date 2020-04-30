@@ -1,6 +1,8 @@
-Clone and cd into directory
+Clone and cd into directory.
+
 Run flask run in one shell.
-Run below commands in 3 Saperstein shells. All are done in the root directory of the project
+
+Run below commands in 3 seperate shells. All are done in the root directory of the project
 
 celery -A fapp.celery worker -l info --concurrency=100 --pool=eventlet  -Q queue1
 
