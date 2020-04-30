@@ -1,3 +1,3 @@
-web:gunicorn --bind 0.0.0.0:$PORT fapp:app
+web: gunicorn fapp:app
 
 
